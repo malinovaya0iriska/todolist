@@ -1,10 +1,14 @@
+import React from 'react';
+
 import { AppBar, Grid, Typography } from '@mui/material';
 
+import { AddItemModal } from './components/AddItemModal/AddItemModal';
 import { StartInfo } from './components/StartInfo/StartInfo';
+import { Task } from './components/Task/Task';
 
 export const App = () => {
   return (
-    <Grid container rowSpacing={4} justifyContent={'center'} alignItems={'center'}>
+    <Grid container spacing={4} justifyContent={'center'} alignItems={'center'}>
       <Grid item xs={12}>
         <AppBar position={'static'}>
           <Typography
@@ -18,6 +22,11 @@ export const App = () => {
         </AppBar>
       </Grid>
       <StartInfo />
+      <Task title={'test title'} />
+      <Task title={'test title'} />
+      <Grid item xs={7} textAlign={'right'}>
+        <AddItemModal />
+      </Grid>
     </Grid>
   );
 };
