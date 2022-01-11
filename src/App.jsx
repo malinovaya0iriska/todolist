@@ -1,19 +1,13 @@
 import React from 'react';
 
 import { AppBar, Grid, Typography } from '@mui/material';
-import { v1 } from 'uuid';
+import { useSelector } from 'react-redux';
 
 import { AddItemModal } from './components/AddItemModal/AddItemModal';
-import { StartInfo } from './components/StartInfo/StartInfo';
 import { Task } from './components/Task/Task';
 
-const tasks = [
-  { id: v1(), title: 'TASK', description: 'have to do' },
-  { id: v1(), title: 'TASK2', description: 'have to do' },
-  { id: v1(), title: 'TASK3', description: 'have to do' },
-];
-
 export const App = () => {
+  const tasks = useSelector((state) => state.tasks);
   return (
     <Grid container spacing={4} justifyContent={'center'} alignItems={'center'}>
       <Grid item xs={12}>
@@ -28,9 +22,9 @@ export const App = () => {
           </Typography>
         </AppBar>
       </Grid>
-      <StartInfo />
+      {/* <StartInfo />*/}
       {tasks.map(({ id, title, description }) => (
-        <Task key={id} title={title} description={description} />
+        <Task key={id} id={id} title={title} description={description} />
       ))}
       <Grid item xs={7} textAlign={'right'}>
         <AddItemModal />

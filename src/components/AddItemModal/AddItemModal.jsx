@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material';
 
-import { useInput } from '../../hooks/useInput';
+import { useForm } from '../../hooks/useForm';
 import { useModal } from '../../hooks/useModal';
 
 export const AddItemModal = () => {
   const { open, handleOpen, handleClose } = useModal();
 
-  const { newTitle, error, onChange, onBlur, onKeyPress } = useInput(true);
-  const { description, onDescriptionChange } = useInput(false);
-  const [task, setTask] = useState({ title: '', description: '' });
   const onAddHandler = (e) => {
-    e.preventDefault();
-    setTask({ title: newTitle, description: description });
-    console.log('SUBMIT');
-    console.log(task);
+    handleFormSubmit(e);
+    handleClose();
   };
-  const isDisabled = Boolean(error);
+
+  const { formFields, isDisabled, handleFormSubmit } = useForm();
+  const { title, description } = formFields;
   return (
     <>
       <Button variant={'contained'} sx={{ padding: '10px 30px' }} onClick={handleOpen}>
@@ -47,17 +44,17 @@ export const AddItemModal = () => {
             <HighlightOffIcon />
           </IconButton>
 
-          <form onSubmit={onAddHandler} style={{ display: 'grid', rowGap: 4 }}>
+          <form onSubmit={() => onAddHandler} style={{ display: 'grid', rowGap: 4 }}>
             <TextField
               label={'Title'}
               variant={'outlined'}
               name={'title'}
-              value={newTitle}
-              onChange={onChange}
-              helperText={error}
-              error={!!error}
-              onBlur={onBlur}
-              onKeyPress={onKeyPress}
+              value={title.value}
+              onChange={title.onChange}
+              helperText={title.error}
+              error={!!title.error}
+              onBlur={title.onBlur}
+              onKeyPress={title.onKeyPress}
             />
             <TextField
               label={'Description'}
@@ -65,8 +62,8 @@ export const AddItemModal = () => {
               minRows={4}
               variant={'outlined'}
               name={'description'}
-              value={description}
-              onChange={onDescriptionChange}
+              value={description.value}
+              onChange={description.onChange}
             />
 
             <Box
@@ -77,7 +74,12 @@ export const AddItemModal = () => {
               gridTemplateRows={'.6fr'}
               alignSelf={'flex-end'}
             >
-              <Button variant={'contained'} color={'primary'} disabled={isDisabled}>
+              <Button
+                variant={'contained'}
+                color={'primary'}
+                onClick={onAddHandler}
+                disabled={isDisabled}
+              >
                 Create
               </Button>
               <Button

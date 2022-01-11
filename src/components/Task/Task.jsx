@@ -9,14 +9,23 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
-export const Task = ({ title, description }) => {
+import { deleteTask } from '../../store/actions/tasks';
+
+export const Task = ({ id, title, description }) => {
+  const dispatch = useDispatch();
+
+  const handleItemDelete = () => {
+    dispatch(deleteTask(id));
+  };
+
   return (
     <Grid item xs={7}>
       <Card elevation={3} sx={{ padding: 1 }}>
         <CardHeader
           action={
-            <IconButton>
+            <IconButton onClick={handleItemDelete}>
               <HighlightOffIcon />
             </IconButton>
           }
