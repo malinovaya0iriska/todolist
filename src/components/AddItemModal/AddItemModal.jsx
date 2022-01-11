@@ -6,7 +6,12 @@ import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material'
 import { useForm } from '../../hooks/useForm';
 import { useModal } from '../../hooks/useModal';
 
+import { useStyles } from './styles';
+
 export const AddItemModal = () => {
+  const classes = useStyles({
+    test: 'example', // you can pass params here
+  });
   const { open, handleOpen, handleClose } = useModal();
 
   const onAddHandler = (e) => {
@@ -66,14 +71,7 @@ export const AddItemModal = () => {
               onChange={description.onChange}
             />
 
-            <Box
-              display={'grid'}
-              justifyContent={'space-between'}
-              gap={6}
-              gridTemplateColumns={'1fr 1fr'}
-              gridTemplateRows={'.6fr'}
-              alignSelf={'flex-end'}
-            >
+            <Box className={classes.buttonContainer}>
               <Button
                 variant={'contained'}
                 color={'primary'}
@@ -97,3 +95,5 @@ export const AddItemModal = () => {
     </>
   );
 };
+
+export default AddItemModal;

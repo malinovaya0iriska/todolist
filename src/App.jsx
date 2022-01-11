@@ -3,7 +3,7 @@ import React from 'react';
 import { AppBar, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-import { AddItemModal } from './components/AddItemModal/AddItemModal';
+import AddItemModal from './components/AddItemModal';
 import { Task } from './components/Task/Task';
 
 export const App = () => {
