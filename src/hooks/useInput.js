@@ -1,18 +1,22 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { EMPTY_STRING, ERROR_INPUT } from '../constants/baseConstants';
 
 export const useInput = (required, initial = EMPTY_STRING) => {
   const [value, setValue] = useState(initial);
-  const [error, setError] = useState(' ');
+  const [error, setError] = useState(null);
 
   const onKeyPress = useCallback(() => {
     error && setError(null);
   }, [error]);
 
-  const onChange = useCallback((event) => {
-    setValue(event.currentTarget.value.trim());
-  }, []);
+  const onChange = useCallback(
+    (event) => {
+      error && setError(null);
+      setValue(event.currentTarget.value.trim());
+    },
+    [error],
+  );
 
   const onBlur = useCallback(
     (e) => {
@@ -20,10 +24,13 @@ export const useInput = (required, initial = EMPTY_STRING) => {
         setError(ERROR_INPUT);
         return;
       }
-      setError(null);
+      error && setError(null);
     },
-    [required],
+    [required, error],
   );
 
-  return { value, error, onChange, onBlur, onKeyPress };
+  return useMemo(
+    () => ({ value, error, onChange, onBlur, onKeyPress }),
+    [value, error, onChange, onBlur, onKeyPress],
+  );
 };

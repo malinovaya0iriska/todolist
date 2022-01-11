@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 
-export const Task = ({ title }) => {
+export const Task = ({ title, description }) => {
   return (
     <Grid item xs={7}>
       <Card elevation={3} sx={{ padding: 1 }}>
@@ -24,7 +24,7 @@ export const Task = ({ title }) => {
         />
         <CardContent>
           <Typography variant="body2" component="h3">
-            Task description
+            {description}
           </Typography>
         </CardContent>
       </Card>
