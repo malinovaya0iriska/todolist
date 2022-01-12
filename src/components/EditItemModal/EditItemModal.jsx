@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ModeEditOutline } from '@mui/icons-material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material';
 
@@ -8,31 +9,30 @@ import { useModal } from '../../hooks/useModal';
 
 import { style } from './styles';
 
-export const AddItemModal = () => {
+export const EditItemModal = ({ id, itemTitle, itemDescription }) => {
   const classes = style();
 
   const { open, handleOpen, handleClose } = useModal();
-
-  const { formFields, isDisabled, handleAddItem } = useForm();
+  const { formFields, isDisabled, handleEditItem } = useForm(itemTitle, itemDescription);
   const { title, description } = formFields;
 
-  const addItem = (e) => {
-    handleAddItem(e);
+  const editItem = (e) => {
+    handleEditItem(e, id);
     handleClose();
   };
-
   return (
     <Box sx={classes.container}>
-      <Button variant={'contained'} sx={classes.button} onClick={handleOpen}>
-        Create
-      </Button>
+      <IconButton onClick={handleOpen}>
+        <ModeEditOutline />
+      </IconButton>
+
       <Modal open={open} onClose={handleClose} sx={classes.modal}>
         <Paper elevation={5} sx={classes.paper}>
           <IconButton onClick={handleClose} sx={classes.closeButton}>
             <HighlightOffIcon />
           </IconButton>
 
-          <form onSubmit={addItem} style={classes.form}>
+          <form onSubmit={editItem} style={classes.form}>
             <TextField
               label={'Title'}
               variant={'outlined'}
@@ -52,6 +52,7 @@ export const AddItemModal = () => {
               name={'description'}
               value={description.value}
               onChange={description.onChange}
+              onBlur={description.onBlur}
             />
 
             <Box sx={classes.buttonContainer}>
@@ -59,9 +60,9 @@ export const AddItemModal = () => {
                 variant={'contained'}
                 color={'primary'}
                 disabled={isDisabled}
-                onClick={addItem}
+                onClick={editItem}
               >
-                Create
+                Edit
               </Button>
               <Button
                 type={'submit'}

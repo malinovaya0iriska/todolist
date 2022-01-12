@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, IconButton, Typography } from '@mui/mate
 import { useDispatch } from 'react-redux';
 
 import { deleteTask } from '../../store/actions';
+import { EditItemModal } from '../EditItemModal';
 
 import { style } from './styles';
 
@@ -20,9 +21,13 @@ export const Task = ({ id, title, description }) => {
     <Card elevation={3} sx={classes.container}>
       <CardHeader
         action={
-          <IconButton onClick={handleItemDelete}>
-            <HighlightOffIcon sx={classes.closeButton} />
-          </IconButton>
+          <>
+            <IconButton onClick={handleItemDelete}>
+              <HighlightOffIcon sx={classes.closeButton} />
+            </IconButton>
+
+            <EditItemModal id={id} itemTitle={title} itemDescription={description} />
+          </>
         }
         title={title}
       />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { EMPTY_STRING, ERROR_INPUT } from '../constants/baseConstants';
 
-export const useInput = (required, initial = EMPTY_STRING) => {
+export const useInput = (required = false, initial = EMPTY_STRING) => {
   const [value, setValue] = useState(initial);
   const [error, setError] = useState(EMPTY_STRING);
   const [isDisabledSubmit, seIsDisabledSubmit] = useState(required);
