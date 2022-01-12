@@ -1,1 +1,1 @@
-export { default } from './AddItemModal';
+export { AddItemModal } from './AddItemModal';

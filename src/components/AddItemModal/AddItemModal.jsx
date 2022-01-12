@@ -6,50 +6,30 @@ import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material'
 import { useForm } from '../../hooks/useForm';
 import { useModal } from '../../hooks/useModal';
 
-import { useStyles } from './styles';
+import { style } from './styles';
 
 export const AddItemModal = () => {
-  const classes = useStyles({
-    test: 'example', // you can pass params here
-  });
   const { open, handleOpen, handleClose } = useModal();
-
+  const classes = style();
   const onAddHandler = (e) => {
     handleFormSubmit(e);
     handleClose();
   };
 
-  const { formFields, isDisabled, handleFormSubmit } = useForm();
+  const { formFields, isDisabled, handleFormSubmit } = useForm(true);
   const { title, description } = formFields;
   return (
-    <>
-      <Button variant={'contained'} sx={{ padding: '10px 30px' }} onClick={handleOpen}>
+    <Box sx={classes.container}>
+      <Button variant={'contained'} sx={classes.button} onClick={handleOpen}>
         Create
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        sx={{
-          display: 'grid',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-        }}
-      >
-        <Paper
-          elevation={5}
-          sx={{
-            padding: 5,
-            display: 'grid',
-            height: 350,
-            gridTemplateRows: '.5fr 4fr',
-          }}
-        >
-          <IconButton onClick={handleClose} sx={{ justifyContent: 'flex-end' }}>
+      <Modal open={open} onClose={handleClose} sx={classes.modal}>
+        <Paper elevation={5} sx={classes.paper}>
+          <IconButton onClick={handleClose} sx={classes.closeButton}>
             <HighlightOffIcon />
           </IconButton>
 
-          <form onSubmit={() => onAddHandler} style={{ display: 'grid', rowGap: 4 }}>
+          <form onSubmit={() => onAddHandler} style={classes.form}>
             <TextField
               label={'Title'}
               variant={'outlined'}
@@ -71,7 +51,7 @@ export const AddItemModal = () => {
               onChange={description.onChange}
             />
 
-            <Box className={classes.buttonContainer}>
+            <Box sx={classes.buttonContainer}>
               <Button
                 variant={'contained'}
                 color={'primary'}
@@ -92,8 +72,6 @@ export const AddItemModal = () => {
           </form>
         </Paper>
       </Modal>
-    </>
+    </Box>
   );
 };
-
-export default AddItemModal;

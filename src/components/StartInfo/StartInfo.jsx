@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { Grid, Paper, Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
+
+import { style } from './styles';
 
 export const StartInfo = () => {
+  const classes = style();
   return (
-    <Grid item xs={7}>
-      <Paper elevation={3} sx={{ padding: 4 }}>
-        <Typography variant={'h6'} component={'h2'} align={'center'}>
-          There are nothing here... Please create one
-        </Typography>
-      </Paper>
-    </Grid>
+    <Paper elevation={3} sx={classes.paper}>
+      <Typography variant={'h6'} sx={classes.content}>
+        There are nothing here... Please create one
+      </Typography>
+    </Paper>
   );
 };
