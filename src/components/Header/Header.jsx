@@ -2,14 +2,14 @@ import React from 'react';
 
 import { AppBar, Typography } from '@mui/material';
 
-import { style } from './styles';
+import { getStyles } from './getStyles';
 
 export const Header = () => {
-  const classes = style();
+  const styles = getStyles();
   return (
-    <AppBar sx={classes.appbar}>
-      <Typography variant={'h4'} sx={classes.heading}>
-        Todolist
+    <AppBar sx={styles.appbar}>
+      <Typography variant={'h4'} sx={styles.heading}>
+        Todo list
       </Typography>
     </AppBar>
   );

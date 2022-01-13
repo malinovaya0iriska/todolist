@@ -2,13 +2,13 @@ import React from 'react';
 
 import { Paper, Typography } from '@mui/material';
 
-import { style } from './styles';
+import { getStyles } from './getStyles';
 
 export const StartInfo = () => {
-  const classes = style();
+  const styles = getStyles();
   return (
-    <Paper elevation={3} sx={classes.paper}>
-      <Typography variant={'h6'} sx={classes.content}>
+    <Paper elevation={3} sx={styles.paper}>
+      <Typography variant={'h6'} sx={styles.content}>
         There are nothing here... Please create one
       </Typography>
     </Paper>

@@ -6,6 +6,12 @@ const initialState = [
   { id: nanoid(), title: 'TASK', description: 'have to do' },
   { id: nanoid(), title: 'TASK2', description: 'have to do' },
   { id: nanoid(), title: 'TASK3', description: 'have to do' },
+  { id: nanoid(), title: 'TASK', description: 'have to do' },
+  { id: nanoid(), title: 'TASK2', description: 'have to do' },
+  { id: nanoid(), title: 'TASK3', description: 'have to do' },
+  { id: nanoid(), title: 'TASK', description: 'have to do' },
+  { id: nanoid(), title: 'TASK2', description: 'have to do' },
+  { id: nanoid(), title: 'TASK3', description: 'have to do' },
 ];
 
 export const tasksReducer = (state = initialState, action) => {
