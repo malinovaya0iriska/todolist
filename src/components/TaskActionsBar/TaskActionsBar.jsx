@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, FormControl, IconButton, MenuItem, Select } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { TASK_STATUS } from '../../constants/baseConstants';
-import { deleteTask } from '../../store/actions';
+import { useSelect } from '../../hooks/useSelect';
+import { changeTaskStatus, deleteTask } from '../../store/actions';
 import { ItemModal } from '../ItemModal';
 
 import { getStyles } from './getStyles';
@@ -16,14 +17,15 @@ export const TaskActionsBar = ({ taskData }) => {
   const dispatch = useDispatch();
   const styles = getStyles();
 
-  const [state, setState] = useState(status);
-
-  const handleSelectChange = (event) => {
-    setState(event.target.value);
-  };
+  const { state, handleSelectChange } = useSelect(status);
 
   const handleItemDelete = () => {
     dispatch(deleteTask(id));
+  };
+
+  const onSelectChange = (e) => {
+    handleSelectChange(e);
+    dispatch(changeTaskStatus(id, e.target.value));
   };
 
   return (
@@ -31,7 +33,7 @@ export const TaskActionsBar = ({ taskData }) => {
       <FormControl>
         <Select
           value={state}
-          onChange={handleSelectChange}
+          onChange={onSelectChange}
           IconComponent={null}
           sx={{ ...styles.select, ...styles[state] }}
         >

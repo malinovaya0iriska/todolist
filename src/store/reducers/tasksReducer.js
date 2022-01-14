@@ -28,6 +28,7 @@ export const tasksReducer = (state = initialState, action) => {
       return state.filter((task) => task.id !== payload.id);
     case EDIT_TASK:
     case CHANGE_TASK_STATUS:
+      // console.log(payload);
       return state.map((task) =>
         task.id === payload.id ? { ...task, ...payload } : task,
       );
