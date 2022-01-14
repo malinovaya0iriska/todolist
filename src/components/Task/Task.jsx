@@ -1,40 +1,19 @@
 import React from 'react';
 
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { Card, CardContent, CardHeader, IconButton, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
 
-import { deleteTask } from '../../store/actions';
-import { ItemModal } from '../ItemModal';
+import { TaskActionsBar } from '../TaskActionsBar/TaskActionsBar';
 
 import { getStyles } from './getStyles';
 
-export const Task = ({ id, title, description }) => {
-  const dispatch = useDispatch();
+export const Task = ({ taskData }) => {
   const styles = getStyles();
-
-  const handleItemDelete = () => {
-    dispatch(deleteTask(id));
-  };
+  const { id, title, description } = taskData;
 
   return (
     <Card elevation={3} sx={styles.container}>
       <CardHeader
-        action={
-          <>
-            <IconButton onClick={handleItemDelete}>
-              <HighlightOffIcon sx={styles.closeButton} />
-            </IconButton>
-
-            <ItemModal
-              id={id}
-              itemTitle={title}
-              itemDescription={description}
-              edit={true}
-              buttonName={'Edit'}
-            />
-          </>
-        }
+        action={<TaskActionsBar id={id} title={title} description={description} />}
         titleTypographyProps={styles.cardHeader}
         title={title}
       />

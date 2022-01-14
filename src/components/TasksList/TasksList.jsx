@@ -17,9 +17,7 @@ export const TasksList = () => {
       {tasks.length === 0 ? (
         <StartInfo />
       ) : (
-        tasksForRender.map(({ id, title, description }) => (
-          <Task key={id} id={id} title={title} description={description} />
-        ))
+        tasksForRender.map((task) => <Task key={task.id} taskData={task} />)
       )}
     </Box>
   );

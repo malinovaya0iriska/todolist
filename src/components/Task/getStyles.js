@@ -4,7 +4,6 @@ export const getStyles = () => ({
     marginBottom: '20px',
     background: '#ced4da',
   },
-  closeButton: { color: '#000000', background: '#fa5252', borderRadius: '50%' },
   cardHeader: {
     fontSize: 'medium',
     fontFamily: 'Virgil',
