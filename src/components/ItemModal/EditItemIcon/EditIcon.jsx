@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const EditIcon = () => {
   return (
     <svg width="24" height="24" viewBox="0 0 179 180">

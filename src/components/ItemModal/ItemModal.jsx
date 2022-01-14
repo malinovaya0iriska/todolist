@@ -1,5 +1,3 @@
-import React from 'react';
-
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material';
 import { nanoid } from 'nanoid';

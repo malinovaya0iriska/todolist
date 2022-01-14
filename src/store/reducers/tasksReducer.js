@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 
+import { TASK_STATUS } from '../../constants/baseConstants';
 import {
   ADD_TASK,
   CHANGE_TASK_STATUS,
@@ -8,15 +9,25 @@ import {
 } from '../actions/constants';
 
 const initialState = [
-  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Todo' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Done' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
-  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Done' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Todo' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
-  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Done' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Done' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: TASK_STATUS.DONE },
+  {
+    id: nanoid(),
+    title: 'TASK2',
+    description: 'have to do',
+    status: TASK_STATUS.PROGRESS,
+  },
+  { id: nanoid(), title: 'TASK3', description: 'have to do', status: TASK_STATUS.TODO },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: TASK_STATUS.DONE },
+  { id: nanoid(), title: 'TASK2', description: 'have to do', status: TASK_STATUS.TODO },
+  {
+    id: nanoid(),
+    title: 'TASK3',
+    description: 'have to do',
+    status: TASK_STATUS.PROGRESS,
+  },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: TASK_STATUS.DONE },
+  { id: nanoid(), title: 'TASK2', description: 'have to do', status: TASK_STATUS.DONE },
+  { id: nanoid(), title: 'TASK3', description: 'have to do', status: TASK_STATUS.TODO },
 ];
 
 export const tasksReducer = (state = initialState, action) => {
@@ -28,7 +39,6 @@ export const tasksReducer = (state = initialState, action) => {
       return state.filter((task) => task.id !== payload.id);
     case EDIT_TASK:
     case CHANGE_TASK_STATUS:
-      // console.log(payload);
       return state.map((task) =>
         task.id === payload.id ? { ...task, ...payload } : task,
       );

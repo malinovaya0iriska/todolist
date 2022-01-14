@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Card, CardContent, CardHeader, Typography } from '@mui/material';
 
-import { TaskActionsBar } from '../TaskActionsBar/TaskActionsBar';
+import { TaskActionsBar } from '../TaskActionsBar';
 
 import { getStyles } from './getStyles';
 
