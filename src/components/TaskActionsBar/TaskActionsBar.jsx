@@ -34,7 +34,7 @@ export const TaskActionsBar = ({ taskData }) => {
         <Select
           value={state}
           onChange={onSelectChange}
-          IconComponent={null}
+          IconComponent={() => null}
           sx={{ ...styles.select, ...styles[state] }}
         >
           <MenuItem value={TASK_STATUS.TODO}>{TASK_STATUS.TODO}</MenuItem>
