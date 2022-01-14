@@ -8,15 +8,15 @@ import {
 } from '../actions/constants';
 
 const initialState = [
-  { id: nanoid(), title: 'TASK', description: 'have to do', state: 'Todo' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', state: 'Done' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', state: 'In progress' },
-  { id: nanoid(), title: 'TASK', description: 'have to do', state: 'Done' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', state: 'Todo' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', state: 'In progress' },
-  { id: nanoid(), title: 'TASK', description: 'have to do', state: 'Done' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', state: 'Done' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', state: 'In progress' },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Todo' },
+  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Done' },
+  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Done' },
+  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Todo' },
+  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
+  { id: nanoid(), title: 'TASK', description: 'have to do', status: 'Done' },
+  { id: nanoid(), title: 'TASK2', description: 'have to do', status: 'Done' },
+  { id: nanoid(), title: 'TASK3', description: 'have to do', status: 'In progress' },
 ];
 
 export const tasksReducer = (state = initialState, action) => {

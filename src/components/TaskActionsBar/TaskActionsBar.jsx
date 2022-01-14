@@ -1,24 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { Box, IconButton } from '@mui/material';
+import { Box, FormControl, IconButton, MenuItem, Select } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
+import { TASK_STATUS } from '../../constants/baseConstants';
 import { deleteTask } from '../../store/actions';
 import { ItemModal } from '../ItemModal';
 
 import { getStyles } from './getStyles';
 
-export const TaskActionsBar = ({ id, title, description }) => {
+export const TaskActionsBar = ({ taskData }) => {
+  const { id, title, description, status } = taskData;
+
   const dispatch = useDispatch();
   const styles = getStyles();
+
+  const [state, setState] = useState(status);
+
+  const handleSelectChange = (event) => {
+    setState(event.target.value);
+  };
 
   const handleItemDelete = () => {
     dispatch(deleteTask(id));
   };
 
   return (
-    <>
+    <Box sx={styles.container}>
+      <FormControl>
+        <Select
+          value={state}
+          onChange={handleSelectChange}
+          IconComponent={null}
+          sx={{ ...styles.select, ...styles[state] }}
+        >
+          <MenuItem value={TASK_STATUS.TODO}>{TASK_STATUS.TODO}</MenuItem>
+          <MenuItem value={TASK_STATUS.PROGRESS}>{TASK_STATUS.PROGRESS}</MenuItem>
+          <MenuItem value={TASK_STATUS.DONE}>{TASK_STATUS.DONE}</MenuItem>
+        </Select>
+      </FormControl>
+
       <Box>
         <IconButton onClick={handleItemDelete}>
           <HighlightOffIcon sx={styles.closeButton} />
@@ -32,6 +54,6 @@ export const TaskActionsBar = ({ id, title, description }) => {
           buttonName={'Edit'}
         />
       </Box>
-    </>
+    </Box>
   );
 };

@@ -8,12 +8,12 @@ import { getStyles } from './getStyles';
 
 export const Task = ({ taskData }) => {
   const styles = getStyles();
-  const { id, title, description } = taskData;
+  const { title, description } = taskData;
 
   return (
     <Card elevation={3} sx={styles.container}>
       <CardHeader
-        action={<TaskActionsBar id={id} title={title} description={description} />}
+        action={<TaskActionsBar taskData={taskData} />}
         titleTypographyProps={styles.cardHeader}
         title={title}
       />
