@@ -27,5 +27,9 @@ export const useInput = (required = false, initial = EMPTY_STRING) => {
     error && setError(null);
   };
 
-  return { value, error, onChange, onBlur, onKeyPress, isDisabledSubmit };
+  const resetInput = () => {
+    setValue(EMPTY_STRING);
+  };
+
+  return { value, error, onChange, onBlur, onKeyPress, isDisabledSubmit, resetInput };
 };

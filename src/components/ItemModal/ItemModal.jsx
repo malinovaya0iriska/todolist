@@ -12,21 +12,21 @@ import { addTask, editTask } from '../../store/actions';
 import { EditIcon } from './EditItemIcon';
 import { getStyles } from './getStyles';
 
-export const ItemModal = ({ buttonName, edit }) => {
+export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) => {
   const dispatch = useDispatch();
-
   const styles = getStyles();
 
   const { open, handleOpen, handleClose } = useModal();
 
-  const { formFields, isDisabled } = useForm();
+  const { formFields, isDisabled } = useForm(itemTitle, itemDescription);
   const { title, description } = formFields;
 
   const handleAddItem = () => {
     dispatch(
       addTask({ id: nanoid(), title: title.value, description: description.value }),
     );
-    handleClose();
+    title.resetInput();
+    description.resetInput();
   };
 
   const handleEditItem = (id) => {
@@ -35,7 +35,8 @@ export const ItemModal = ({ buttonName, edit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    edit ? handleEditItem(e) : handleAddItem(e);
+    edit ? handleEditItem(id) : handleAddItem();
+    handleClose();
   };
 
   return (
@@ -54,7 +55,7 @@ export const ItemModal = ({ buttonName, edit }) => {
           <IconButton onClick={handleClose} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
           </IconButton>
-          <form onSubmit={handleSubmit} style={styles.form}>
+          <form onSubmit={handleSubmit}>
             <TextField
               margin={'normal'}
               fullWidth

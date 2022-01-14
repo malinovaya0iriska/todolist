@@ -38,10 +38,6 @@ export const getStyles = () => ({
     borderRadius: '50%',
     background: '#868e96',
   },
-  form: {
-    display: 'grid',
-    rowGap: 4,
-  },
   buttonContainer: {
     paddingTop: '40px',
     display: 'grid',
