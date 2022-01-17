@@ -1,35 +1,20 @@
 import { useState } from 'react';
 
-import { EMPTY_STRING, ERROR_INPUT } from '../constants/baseConstants';
+import { EMPTY_STRING } from '../constants/baseConstants';
 
-export const useInput = (required = false, initial = EMPTY_STRING) => {
-  const [value, setValue] = useState(initial);
-  const [error, setError] = useState(EMPTY_STRING);
-  const [isDisabledSubmit, seIsDisabledSubmit] = useState(required);
-
-  const onKeyPress = () => {
-    error && setError(null);
-  };
+export const useInput = (
+  initial = { title: EMPTY_STRING, description: EMPTY_STRING },
+) => {
+  const [data, setValue] = useState(initial);
 
   const onChange = (e) => {
-    error && setError(null);
-    isDisabledSubmit && seIsDisabledSubmit(false);
-    setValue(e.currentTarget.value.trim());
-  };
-
-  const onBlur = (e) => {
-    if (!e.target.value && required) {
-      !isDisabledSubmit && seIsDisabledSubmit(true);
-      setError(ERROR_INPUT);
-      return;
-    }
-    isDisabledSubmit && seIsDisabledSubmit(false);
-    error && setError(null);
+    const { name, value } = e.target;
+    setValue({ ...data, [name]: value.trim() });
   };
 
   const resetInput = () => {
-    setValue(EMPTY_STRING);
+    setValue(initial);
   };
 
-  return { value, error, onChange, onBlur, onKeyPress, isDisabledSubmit, resetInput };
+  return { data, onChange, resetInput };
 };

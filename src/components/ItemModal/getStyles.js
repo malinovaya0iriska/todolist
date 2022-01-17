@@ -6,7 +6,7 @@ export const getStyles = () => ({
     maxWidth: '450px',
     margin: '12% auto',
   },
-  button: {
+  actionButton: {
     padding: '10px 30px',
     background: '#40c057',
     color: '#000000',
@@ -25,14 +25,6 @@ export const getStyles = () => ({
     alignSelf: 'flex-end',
     maxWidth: '36px',
     color: '#000000',
-  },
-  editButton: {
-    width: '28px',
-    height: '28px',
-    color: '#000000',
-    background: '#ced4da',
-    padding: '2px',
-    marginRight: '7px',
   },
   icon: {
     borderRadius: '50%',

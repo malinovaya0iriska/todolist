@@ -3,69 +3,47 @@ import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material'
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 
-import { useForm } from '../../hooks/useForm';
+import { useInput } from '../../hooks/useInput';
 import { useModal } from '../../hooks/useModal';
-import { addTask, editTask } from '../../store/actions';
+import { addTask } from '../../store/actions';
 
-import { EditIcon } from './EditItemIcon';
 import { getStyles } from './getStyles';
 
-export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) => {
+export const ItemModal = ({ buttonName }) => {
   const dispatch = useDispatch();
   const styles = getStyles();
 
   const { open, handleOpen, handleClose } = useModal();
 
-  const { formFields, isDisabled } = useForm(itemTitle, itemDescription);
-  const { title, description } = formFields;
+  const { data, onChange, resetInput } = useInput();
+  const { title, description } = data;
 
-  const handleAddItem = () => {
-    dispatch(
-      addTask({ id: nanoid(), title: title.value, description: description.value }),
-    );
-    title.resetInput();
-    description.resetInput();
-  };
-
-  const handleEditItem = (id) => {
-    dispatch(editTask(id, title.value, description.value));
-  };
-
-  const handleSubmit = (e) => {
+  const handleAddItem = (e) => {
     e.preventDefault();
-    edit ? handleEditItem(id) : handleAddItem();
+    dispatch(addTask({ id: nanoid(), ...data }));
+    resetInput();
     handleClose();
   };
 
   return (
     <Box sx={styles.container}>
-      {edit ? (
-        <IconButton onClick={handleOpen} sx={styles.editButton}>
-          <EditIcon />
-        </IconButton>
-      ) : (
-        <Button variant={'contained'} sx={styles.button} onClick={handleOpen}>
-          {buttonName}
-        </Button>
-      )}
+      <Button variant={'contained'} sx={styles.actionButton} onClick={handleOpen}>
+        {buttonName}
+      </Button>
       <Modal open={open} onClose={handleClose} sx={styles.modal}>
         <Paper elevation={5} sx={styles.paper}>
           <IconButton onClick={handleClose} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
           </IconButton>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleAddItem}>
             <TextField
               margin={'normal'}
               fullWidth
               label={'Title'}
               variant={'outlined'}
               name={'title'}
-              value={title.value}
-              onChange={title.onChange}
-              helperText={title.error}
-              error={!!title.error}
-              onBlur={title.onBlur}
-              onKeyPress={title.onKeyPress}
+              value={title}
+              onChange={onChange}
             />
             <TextField
               margin={'normal'}
@@ -76,8 +54,8 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               maxRows={7}
               variant={'outlined'}
               name={'description'}
-              value={description.value}
-              onChange={description.onChange}
+              value={description}
+              onChange={onChange}
             />
 
             <Box sx={styles.buttonContainer}>
@@ -85,9 +63,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
                 type={'submit'}
                 variant={'contained'}
                 color={'primary'}
-                disabled={isDisabled}
                 sx={styles.confirmButton}
-                onClick={handleSubmit}
               >
                 {buttonName}
               </Button>
