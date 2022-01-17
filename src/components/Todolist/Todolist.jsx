@@ -11,7 +11,7 @@ export const Todolist = () => {
   return (
     <Box sx={classes.container}>
       <TasksList />
-      <ItemModal buttonName={'Create'} />
+      <ItemModal buttonName={'Create'} edit={false} />
     </Box>
   );
 };
