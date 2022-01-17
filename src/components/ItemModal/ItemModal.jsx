@@ -34,9 +34,9 @@ export const ItemModal = ({ buttonName }) => {
       <Button variant={'contained'} sx={styles.actionButton} onClick={handleOpen}>
         {buttonName}
       </Button>
-      <Modal open={open} onClose={handleCancel} sx={styles.modal}>
+      <Modal open={open} onClose={handleClose} sx={styles.modal}>
         <Paper elevation={5} sx={styles.paper}>
-          <IconButton onClick={handleClose} sx={styles.closeButton}>
+          <IconButton onClick={handleCancel} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
           </IconButton>
           <form onSubmit={handleAddItem}>
