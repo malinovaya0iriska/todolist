@@ -28,6 +28,11 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
     dispatch(editTask(id, title, description));
   };
 
+  const handleCancel = () => {
+    resetInput();
+    handleClose();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     edit ? handleEditItem(id) : handleAddItem();
@@ -48,7 +53,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
       )}
       <Modal open={open} onClose={handleClose} sx={styles.modal}>
         <Paper elevation={5} sx={styles.paper}>
-          <IconButton onClick={handleClose} sx={styles.closeButton}>
+          <IconButton onClick={handleCancel} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
           </IconButton>
           <form onSubmit={handleSubmit}>
@@ -60,6 +65,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               name={'title'}
               value={title}
               onChange={onChange}
+              sx={styles.textField}
             />
             <TextField
               margin={'normal'}
@@ -72,6 +78,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               name={'description'}
               value={description}
               onChange={onChange}
+              sx={styles.textField}
             />
 
             <Box sx={styles.buttonContainer}>
@@ -86,7 +93,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               <Button
                 color={'secondary'}
                 variant={'contained'}
-                onClick={handleClose}
+                onClick={handleCancel}
                 sx={styles.cancelButton}
               >
                 Cancel
