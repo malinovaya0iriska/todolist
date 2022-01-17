@@ -6,4 +6,4 @@ export const TASK_STATUS = {
   PROGRESS: 'In progress',
   TODO: 'Todo',
 };
-export const TASK_FILTERS = { ...TASK_STATUS, ALL: 'All' };
+export const TODOLIST_FILTERS = { ...TASK_STATUS, ALL: 'All' };

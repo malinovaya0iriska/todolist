@@ -6,12 +6,13 @@ import { TasksList } from '../TasksList';
 
 import { style } from './styles';
 
-export const Todolist = () => {
+export const Todolist = ({ id, filter }) => {
   const classes = style();
+
   return (
     <Box sx={classes.container}>
-      <SortBar />
-      <TasksList />
+      <SortBar activeFilter={filter} id={id} />
+      <TasksList filter={filter} />
       <ItemModal buttonName={'Create'} edit={false} />
     </Box>
   );
