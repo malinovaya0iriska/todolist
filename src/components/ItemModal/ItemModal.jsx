@@ -65,6 +65,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               name={'title'}
               value={title}
               onChange={onChange}
+              sx={styles.textField}
             />
             <TextField
               margin={'normal'}
@@ -77,6 +78,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
               name={'description'}
               value={description}
               onChange={onChange}
+              sx={styles.textField}
             />
 
             <Box sx={styles.buttonContainer}>
