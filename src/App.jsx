@@ -1,3 +1,13 @@
+import React from 'react';
+
+import { Header } from './components/Header';
+import { Todolist } from './components/Todolist';
+
 export const App = () => {
-  return <div className={'app'}> </div>;
+  return (
+    <>
+      <Header />
+      <Todolist />;
+    </>
+  );
 };
