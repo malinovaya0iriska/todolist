@@ -51,7 +51,7 @@ export const TaskActionsBar = ({ taskData }) => {
           edit={true}
           buttonName={'Edit'}
         />
-      </Box>{' '}
+      </Box>
     </Box>
   );
 };

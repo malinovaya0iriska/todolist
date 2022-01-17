@@ -12,6 +12,8 @@ export const getStyles = () => ({
     color: '#000000',
     fontSize: 'medium',
     fontFamily: 'Virgil',
+    border: '1px solid #000000',
+    borderRadius: '0',
   },
   paper: {
     outline: 'none',
@@ -50,11 +52,15 @@ export const getStyles = () => ({
     fontFamily: 'Virgil',
     background: '#fa5252',
     color: '#000000',
+    borderRadius: '0',
+    border: '1px solid #000000',
   },
   confirmButton: {
     fontSize: 'medium',
     fontFamily: 'Virgil',
     background: '#228be6',
     color: '#000000',
+    borderRadius: '0',
+    border: '1px solid #000000',
   },
 });
