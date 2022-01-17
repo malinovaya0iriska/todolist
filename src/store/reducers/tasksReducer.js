@@ -26,7 +26,7 @@ export const tasksReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_TASK:
-      return [...state, payload];
+      return [...state, { ...payload, id: nanoid() }];
     case DELETE_TASK:
       return state.filter((task) => task.id !== payload.id);
     case EDIT_TASK:
