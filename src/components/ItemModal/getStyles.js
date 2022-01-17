@@ -26,6 +26,9 @@ export const getStyles = () => ({
     maxWidth: '36px',
     color: '#000000',
   },
+  textField: {
+    background: '#fff',
+  },
   icon: {
     borderRadius: '50%',
     background: '#868e96',

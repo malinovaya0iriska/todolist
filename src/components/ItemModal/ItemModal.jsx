@@ -24,12 +24,17 @@ export const ItemModal = ({ buttonName }) => {
     handleClose();
   };
 
+  const handleCancel = () => {
+    resetInput();
+    handleClose();
+  };
+
   return (
     <Box sx={styles.container}>
       <Button variant={'contained'} sx={styles.actionButton} onClick={handleOpen}>
         {buttonName}
       </Button>
-      <Modal open={open} onClose={handleClose} sx={styles.modal}>
+      <Modal open={open} onClose={handleCancel} sx={styles.modal}>
         <Paper elevation={5} sx={styles.paper}>
           <IconButton onClick={handleClose} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
@@ -43,6 +48,7 @@ export const ItemModal = ({ buttonName }) => {
               name={'title'}
               value={title}
               onChange={onChange}
+              sx={styles.textField}
             />
             <TextField
               margin={'normal'}
@@ -55,6 +61,7 @@ export const ItemModal = ({ buttonName }) => {
               name={'description'}
               value={description}
               onChange={onChange}
+              sx={styles.textField}
             />
 
             <Box sx={styles.buttonContainer}>
@@ -69,7 +76,7 @@ export const ItemModal = ({ buttonName }) => {
               <Button
                 color={'secondary'}
                 variant={'contained'}
-                onClick={handleClose}
+                onClick={handleCancel}
                 sx={styles.cancelButton}
               >
                 Cancel
