@@ -1,6 +1,5 @@
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, Button, IconButton, Modal, Paper, TextField } from '@mui/material';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 
 import { useInput } from '../../hooks/useInput';
@@ -20,7 +19,7 @@ export const ItemModal = ({ buttonName }) => {
 
   const handleAddItem = (e) => {
     e.preventDefault();
-    dispatch(addTask({ id: nanoid(), ...data }));
+    dispatch(addTask({ ...data }));
     resetInput();
     handleClose();
   };
