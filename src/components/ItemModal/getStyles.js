@@ -39,6 +39,9 @@ export const getStyles = () => ({
     padding: '0',
     marginRight: '7px',
   },
+  textField: {
+    background: '#fff',
+  },
   icon: {
     borderRadius: '50%',
     background: '#868e96',
