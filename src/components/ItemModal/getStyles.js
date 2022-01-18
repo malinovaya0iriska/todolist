@@ -23,9 +23,6 @@ export const getStyles = () => ({
     height: 350,
     background: '#ced4da',
   },
-  textField: {
-    background: '#fff',
-  },
   closeButton: {
     alignSelf: 'flex-end',
     maxWidth: '36px',
