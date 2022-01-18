@@ -1,32 +1,14 @@
-import { nanoid } from 'nanoid';
+import { ADD_TASK, DELETE_TASK, SET_TASKS } from '../actions/constants';
 
-import { ADD_TASK, DELETE_TASK } from '../actions/constants';
-
-const initialState = [
-  { id: nanoid(), title: 'TASK', description: 'have to do' },
-  {
-    id: nanoid(),
-    title: 'TASK2',
-    description: 'have to do',
-  },
-  { id: nanoid(), title: 'TASK3', description: 'have to do' },
-  { id: nanoid(), title: 'TASK', description: 'have to do' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do' },
-  {
-    id: nanoid(),
-    title: 'TASK3',
-    description: 'have to do',
-  },
-  { id: nanoid(), title: 'TASK', description: 'have to do' },
-  { id: nanoid(), title: 'TASK2', description: 'have to do' },
-  { id: nanoid(), title: 'TASK3', description: 'have to do' },
-];
+const initialState = [];
 
 export const tasksReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case SET_TASKS:
+      return [...payload];
     case ADD_TASK:
-      return [...state, { ...payload, id: nanoid() }];
+      return [...state, { ...payload }];
     case DELETE_TASK:
       return state.filter((task) => task.id !== payload.id);
     default:

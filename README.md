@@ -8,6 +8,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `json-server --watch data/db.json --port 8000`
+
+Runs the data base.\
+Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
+To get all todolists default route is '/todolists/'.
+If you need to get one with defined id just add it like that '/todolists/id'.\
+
+The page will reload when you make changes.\
+
 ### `yarn start`
 
 Runs the app in the development mode.\

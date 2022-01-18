@@ -2,7 +2,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
-import { deleteTask } from '../../store/actions';
+import { removeTask } from '../../store/middlewares';
 
 import { getStyles } from './getStyles';
 
@@ -11,7 +11,7 @@ export const TaskActionsBar = ({ id }) => {
   const styles = getStyles();
 
   const handleItemDelete = () => {
-    dispatch(deleteTask(id));
+    dispatch(removeTask(id));
   };
 
   return (
