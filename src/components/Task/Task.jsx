@@ -11,7 +11,7 @@ export const Task = ({ taskData }) => {
   return (
     <Card elevation={3} sx={styles.container}>
       <CardHeader
-        action={<TaskActionsBar id={taskData.id} />}
+        action={<TaskActionsBar taskData={taskData} />}
         titleTypographyProps={styles.cardHeader}
         title={title}
       />
