@@ -22,6 +22,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
 
   const handleAddItem = () => {
     dispatch(addTask({ ...data }));
+    resetInput();
   };
 
   const handleEditItem = (id) => {
@@ -31,7 +32,6 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
   const handleSubmit = (e) => {
     e.preventDefault();
     edit ? handleEditItem(id) : handleAddItem();
-    resetInput();
     handleClose();
   };
 
