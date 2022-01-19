@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { nanoid } from 'nanoid';
 
 import { ADD_TASK, DELETE_TASK, EDIT_TASK } from '../actions/constants';
@@ -22,18 +23,26 @@ const initialState = [
   { id: nanoid(), title: 'TASK3', description: 'have to do' },
 ];
 
-export const tasksReducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case ADD_TASK:
-      return [...state, { ...payload, id: nanoid() }];
-    case DELETE_TASK:
-      return state.filter((task) => task.id !== payload.id);
-    case EDIT_TASK:
-      return state.map((task) =>
-        task.id === payload.id ? { ...task, ...payload } : task,
-      );
-    default:
-      return state;
-  }
-};
+export const tasksReducer = (state = initialState, action) =>
+  produce(state, (draft) => {
+    const { type, payload } = action;
+    switch (type) {
+      case ADD_TASK: {
+        draft.push({ ...payload, id: nanoid() });
+        break;
+      }
+      case DELETE_TASK: {
+        const index = state.findIndex((task) => task.id === payload.id);
+        draft.splice(index, 1);
+        break;
+      }
+      case EDIT_TASK: {
+        const index = state.findIndex((task) => task.id === payload.id);
+        draft[index].title = payload.title;
+        draft[index].description = payload.description;
+        break;
+      }
+      default:
+        return state;
+    }
+  });
