@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { useInput } from '../../hooks/useInput';
 import { useModal } from '../../hooks/useModal';
-import { addTask, editTask } from '../../store/actions';
+import { editTask } from '../../store/actions';
+import { addTaskTC } from '../../store/middlewares';
 
 import { EditIcon } from './EditItemIcon';
 import { getStyles } from './getStyles';
@@ -14,6 +15,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
   const styles = getStyles();
 
   const { open, handleOpen, handleClose } = useModal();
+
   const { data, onChange, resetInput } = useInput({
     title: itemTitle,
     description: itemDescription,
@@ -21,7 +23,7 @@ export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) 
   const { title, description } = data;
 
   const handleAddItem = () => {
-    dispatch(addTask({ ...data }));
+    dispatch(addTaskTC(title, description));
     resetInput();
   };
 
