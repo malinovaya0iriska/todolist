@@ -26,9 +26,6 @@ export const getStyles = () => ({
     maxWidth: '36px',
     color: '#000000',
   },
-  textField: {
-    background: '#fff',
-  },
   editButton: {
     width: '28px',
     height: '28px',
@@ -36,6 +33,9 @@ export const getStyles = () => ({
     background: '#ced4da',
     padding: '0',
     marginRight: '7px',
+  },
+  textField: {
+    background: '#fff',
   },
   icon: {
     borderRadius: '50%',
