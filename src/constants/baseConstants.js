@@ -5,3 +5,8 @@ export const TASK_STATUS = {
   PROGRESS: 'In progress',
   TODO: 'Todo',
 };
+export const COLORS = {
+  [TASK_STATUS.TODO]: '#15aabf',
+  [TASK_STATUS.PROGRESS]: '#40c057',
+  [TASK_STATUS.DONE]: '#fd7e14',
+};
