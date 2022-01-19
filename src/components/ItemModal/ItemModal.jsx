@@ -4,23 +4,36 @@ import { useDispatch } from 'react-redux';
 
 import { useInput } from '../../hooks/useInput';
 import { useModal } from '../../hooks/useModal';
+import { editTask } from '../../store/actions';
 import { addTaskTC } from '../../store/middlewares';
 
+import { EditIcon } from './EditItemIcon';
 import { getStyles } from './getStyles';
 
-export const ItemModal = ({ buttonName }) => {
+export const ItemModal = ({ buttonName, edit, id, itemTitle, itemDescription }) => {
   const dispatch = useDispatch();
   const styles = getStyles();
 
   const { open, handleOpen, handleClose } = useModal();
 
-  const { data, onChange, resetInput } = useInput();
+  const { data, onChange, resetInput } = useInput({
+    title: itemTitle,
+    description: itemDescription,
+  });
   const { title, description } = data;
 
-  const handleAddItem = (e) => {
-    e.preventDefault();
+  const handleAddItem = () => {
     dispatch(addTaskTC(title, description));
     resetInput();
+  };
+
+  const handleEditItem = (id) => {
+    dispatch(editTask(id, title, description));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    edit ? handleEditItem(id) : handleAddItem();
     handleClose();
   };
 
@@ -31,15 +44,21 @@ export const ItemModal = ({ buttonName }) => {
 
   return (
     <Box sx={styles.container}>
-      <Button variant={'contained'} sx={styles.actionButton} onClick={handleOpen}>
-        {buttonName}
-      </Button>
+      {edit ? (
+        <IconButton onClick={handleOpen} sx={styles.editButton}>
+          <EditIcon />
+        </IconButton>
+      ) : (
+        <Button variant={'contained'} sx={styles.actionButton} onClick={handleOpen}>
+          {buttonName}
+        </Button>
+      )}
       <Modal open={open} onClose={handleClose} sx={styles.modal}>
         <Paper elevation={5} sx={styles.paper}>
           <IconButton onClick={handleCancel} sx={styles.closeButton}>
             <HighlightOffIcon sx={styles.icon} />
           </IconButton>
-          <form onSubmit={handleAddItem}>
+          <form onSubmit={handleSubmit}>
             <TextField
               margin={'normal'}
               fullWidth
