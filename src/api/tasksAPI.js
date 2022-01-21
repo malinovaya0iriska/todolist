@@ -10,4 +10,7 @@ export const tasksAPI = {
   addTask(title, description) {
     return instance.post(`tasks/`, { title, description });
   },
+  getTask(id) {
+    return instance.get(`tasks/${id}`);
+  },
 };
