@@ -6,3 +6,9 @@ export const TASK_STATUS = {
   DONE: 'Done',
 };
 export const TODOLIST_FILTERS = { ALL: 'All', ...TASK_STATUS };
+
+export const COLORS = {
+  [TASK_STATUS.TODO]: '#15aabf',
+  [TASK_STATUS.PROGRESS]: '#40c057',
+  [TASK_STATUS.DONE]: '#fd7e14',
+};
