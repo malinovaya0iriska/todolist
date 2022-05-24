@@ -2,7 +2,6 @@ import { tasksAPI } from '../../api/tasksAPI';
 import { editTask } from '../actions';
 
 export const updateTask = (id, title, description) => async (dispatch) => {
-  //console.log(id, title, description);
   try {
     const response = await tasksAPI.editTask(id, title, description);
 

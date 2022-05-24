@@ -13,4 +13,7 @@ export const tasksAPI = {
   editTask(id, title, description) {
     return instance.put(`tasks/${id}`, { title, description });
   },
+  changeTaskStatus(id, status) {
+    return instance.put(`tasks/${id}`, { status });
+  },
 };
