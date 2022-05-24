@@ -2,8 +2,8 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Box, FormControl, IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
-import { deleteTask } from '../../store/actions';
-import { CustomSelect } from '../CustomSelect/';
+import { removeTask } from '../../store/middlewares';
+import { CustomSelect } from '../CustomSelect';
 import { ItemModal } from '../ItemModal';
 
 import { getStyles } from './getStyles';
@@ -15,7 +15,7 @@ export const TaskActionsBar = ({ taskData }) => {
   const { id, title, description, status } = taskData;
 
   const handleItemDelete = () => {
-    dispatch(deleteTask(id));
+    dispatch(removeTask(id));
   };
 
   return (
@@ -35,7 +35,7 @@ export const TaskActionsBar = ({ taskData }) => {
           edit={true}
           buttonName={'Edit'}
         />
-      </Box>{' '}
+      </Box>
     </Box>
   );
 };

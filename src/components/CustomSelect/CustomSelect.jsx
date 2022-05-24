@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { COLORS, TASK_STATUS } from '../../constants/baseConstants';
 import { useSelect } from '../../hooks/useSelect';
-import { changeTaskStatus } from '../../store/actions';
 
+import { updateTaskStatus } from './../../store/middlewares';
 import { getStyles } from './getStyles';
 
 export const CustomSelect = ({ id, status }) => {
@@ -16,16 +16,18 @@ export const CustomSelect = ({ id, status }) => {
 
   const onSelectChange = (e) => {
     handleSelectChange(e);
-    dispatch(changeTaskStatus(id, e.target.value));
+    dispatch(updateTaskStatus(id, e.target.value));
   };
 
   return (
-    <Select
-      value={state}
-      onChange={onSelectChange}
-      IconComponent={() => null}
-      sx={styles.select}
-    >
+    <Select value={state} onChange={onSelectChange} sx={styles.select}>
+      {/* {Object.values(TASK_STATUS).map((status) => {
+        return (
+          <MenuItem key={status} value={status}>
+            {status}
+          </MenuItem>
+        );
+      })} */}
       <MenuItem value={TASK_STATUS.TODO}>{TASK_STATUS.TODO}</MenuItem>
       <MenuItem value={TASK_STATUS.PROGRESS}>{TASK_STATUS.PROGRESS}</MenuItem>
       <MenuItem value={TASK_STATUS.DONE}>{TASK_STATUS.DONE}</MenuItem>

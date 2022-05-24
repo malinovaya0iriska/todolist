@@ -9,7 +9,7 @@ export const useInput = (
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setValue({ ...data, [name]: value.trim() });
+    setValue({ ...data, [name]: value });
   };
 
   const resetInput = () => {

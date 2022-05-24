@@ -1,57 +1,24 @@
 import { produce } from 'immer';
-import { nanoid } from 'nanoid';
 
 import { TASK_STATUS } from '../../constants/baseConstants';
 import {
   ADD_TASK,
+  SET_TASKS,
   CHANGE_TASK_STATUS,
   DELETE_TASK,
   EDIT_TASK,
 } from '../actions/constants';
 
-const initialState = [
-  {
-    id: nanoid(),
-    title: 'TASK',
-    description: 'have to do',
-    status: TASK_STATUS.PROGRESS,
-  },
-  {
-    id: nanoid(),
-    title: 'TASK2',
-    description: 'have to do',
-    status: TASK_STATUS.DONE,
-  },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', status: TASK_STATUS.DONE },
-  { id: nanoid(), title: 'TASK', description: 'have to do', status: TASK_STATUS.TODO },
-  {
-    id: nanoid(),
-    title: 'TASK2',
-    description: 'have to do',
-    status: TASK_STATUS.PROGRESS,
-  },
-  {
-    id: nanoid(),
-    title: 'TASK3',
-    description: 'have to do',
-    status: TASK_STATUS.DONE,
-  },
-  {
-    id: nanoid(),
-    title: 'TASK',
-    description: 'have to do',
-    status: TASK_STATUS.PROGRESS,
-  },
-  { id: nanoid(), title: 'TASK2', description: 'have to do', status: TASK_STATUS.DONE },
-  { id: nanoid(), title: 'TASK3', description: 'have to do', status: TASK_STATUS.TODO },
-];
+const initialState = [];
 
 export const tasksReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     const { type, payload } = action;
     switch (type) {
+      case SET_TASKS:
+        return payload;
       case ADD_TASK: {
-        draft.push({ ...payload, id: nanoid(), status: TASK_STATUS.TODO });
+        draft.push({ ...payload, status: TASK_STATUS.TODO });
         break;
       }
       case DELETE_TASK: {

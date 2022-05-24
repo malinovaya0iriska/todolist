@@ -10,3 +10,5 @@ export const COLORS = {
   [TASK_STATUS.PROGRESS]: '#40c057',
   [TASK_STATUS.DONE]: '#fd7e14',
 };
+
+export const DB_URL = 'http://localhost:8000/';

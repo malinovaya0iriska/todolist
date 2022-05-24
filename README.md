@@ -8,6 +8,33 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `json-server --watch data/db.json --port 8000`
+
+To use database you need to create `data` folder with db.json. 
+Tne properties' names will be endpoints for requests.
+```
+ {
+"tasks": [
+{
+"id": "1",
+"title": "TASK",
+"description": "have to do"
+},
+{
+"id": "5",
+"title": "TASK2",
+"description": "have to do"
+},
+}
+```
+To get all tasks default route is '/tasks/'.
+If you need to get one with defined id just add it like that '/tasks/id'.\
+
+Runs the database.\
+Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
+
+The page will reload when you make changes.\
+
 ### `yarn start`
 
 Runs the app in the development mode.\
